@@ -5,7 +5,7 @@ def show_main(request):
     context = {
         'name': 'Mahira Irgiani',
         'class': 'PBP E',
-        'total_amount': '12',
+        'amount_books': '12',
     }
 
     return render(request, "main.html", context)
