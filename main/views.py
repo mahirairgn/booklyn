@@ -4,7 +4,8 @@ from django.shortcuts import render
 def show_main(request):
     context = {
         'name': 'Mahira Irgiani',
-        'class': 'PBP E'
+        'class': 'PBP E',
+        'total_amount': '12',
     }
 
     return render(request, "main.html", context)
