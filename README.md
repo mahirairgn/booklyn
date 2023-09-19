@@ -3,12 +3,12 @@ Link Adaptable: https://booklyn.adaptable.app/main/
 # Tugas 3
 ### Apa perbedaan antara form POST dan form GET dalam Django?
 POST dan GET adalah metode pada HTTP yang berperan untuk mengirim data browser ke server. Perbedaan utama dari keduanya terletak pada cara mentransfer data dari user ke server.
-**POST**
+##### POST
 - Mengirim data dalam bentuk tubuh pesan HTTP
 - Tidak menampilkan data di URL karena dikirim secara terenkripsi
 - Relatif lebih aman
 - Biasanya digunakan pada sistem login
-**GET**
+##### GET
 - Mengirim data sebagai bagian dari URL
 - Menampilkan data di URL dan dapat dibaca secara publik
 - Kurang aman jika dibandingkan dengan GET
@@ -16,17 +16,17 @@ POST dan GET adalah metode pada HTTP yang berperan untuk mengirim data browser k
 
 ### Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
 Ketiganya adalah format data yang digunakan dalam proses pengiriman data antaraplikasi. Perbedaannya adalah:
-**XML**
+##### XML
 - Berbasis tag
 - Menyimpan dan mengirim data yang terstruktur
 - Tingkat kompleksitasnya tinggi karena memiliki struktur yang lebih rumit
 - Digunakan pada dokumen, API, dan konfigurasi
-**JSON**
+##### JSON
 - Berbasis objek
 - Pertukaran data sederhana yang mirip dengan struktur data pada bahasa pemrograman, serta bersifat hierarkis
 - Tingkat kompleksitasnya rendah karena memiliki format yang sederhana
 - Digunakan pada data dan API
-**HTML**
+##### HTML
 - Berbasis tag
 - Berkaitan dengan data yang dapat dibaca manusia dan halaman web
 - Tingkat kompleksitasnya rendah
