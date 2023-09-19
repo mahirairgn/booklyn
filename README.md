@@ -1,5 +1,72 @@
 Link Adaptable: https://booklyn.adaptable.app/main/
 
+# Tugas 3
+### Apa perbedaan antara form POST dan form GET dalam Django?
+POST dan GET adalah metode pada HTTP yang berperan untuk mengirim data browser ke server. Perbedaan utama dari keduanya terletak pada cara mentransfer data dari user ke server.
+**POST**
+- Mengirim data dalam bentuk tubuh pesan HTTP
+- Tidak menampilkan data di URL karena dikirim secara terenkripsi
+- Relatif lebih aman
+- Biasanya digunakan pada sistem login
+**GET**
+- Mengirim data sebagai bagian dari URL
+- Menampilkan data di URL dan dapat dibaca secara publik
+- Kurang aman jika dibandingkan dengan GET
+- Biasanya digunakan pada sistem pencarian
+
+### Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+Ketiganya adalah format data yang digunakan dalam proses pengiriman data antaraplikasi. Perbedaannya adalah:
+**XML**
+- Berbasis tag
+- Menyimpan dan mengirim data yang terstruktur
+- Tingkat kompleksitasnya tinggi karena memiliki struktur yang lebih rumit
+- Digunakan pada dokumen, API, dan konfigurasi
+**JSON**
+- Berbasis objek
+- Pertukaran data sederhana yang mirip dengan struktur data pada bahasa pemrograman, serta bersifat hierarkis
+- Tingkat kompleksitasnya rendah karena memiliki format yang sederhana
+- Digunakan pada data dan API
+**HTML**
+- Berbasis tag
+- Berkaitan dengan data yang dapat dibaca manusia dan halaman web
+- Tingkat kompleksitasnya rendah
+- Digunakan pada dokumen web
+
+### Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+Karena JSON memiliki format yang ringan, sederhana, dan kompatibel sehingga lebih ringan dan efisien untuk ditransfer melalui jaringan. Selain itu, JSON juga dapat digunakan di berbagai aplikasi karena didukung oleh berbagai bahasa pemrograman dan platform
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
+1. Mengaktifkan virtual environment
+2. Menghilangkan path `main/` pada bagian `urlpatterns` di file `urls.py` pada subdirektori `booklyn`
+3. Membuat file bernama `base.html` pada subdirektori `templates`
+4. Menyesuaikan kode di `settings.py` pada subdirektori `booklyn` agar file `base.html` dapat terdeteksi sebagai template
+5. Mengubah kode pada file `main.html` di subdirektori `templates`
+6. Membuat file baru bernama `forms.py` pada direktori `main` untuk menerima data produk baru
+7. Menambahkan import `HttpResponseRedirect`, `ItemForm`,`reverse`, `HttpResponse`, dan `Serializer` pada file `views.py` di subdirektori `main` dan membuat fungsi baru bernama `create_item`
+8. Menyesuaikan isi dari fungsi `show_main` serta membuat fungsi baru bernama `show_xml`, `show_json`, `show_xml_by_id`, dan `show_jsin_by_id` pada file `views.py`
+9. Mengimport fungsi `create_item`, `show_xml`, `show_json`, `show_xml_by_id` dan `show_json_by_id` di file `urls.py` pada subdirektori `main` kemudian menambahkan path url baru ke bagian `urlpatterns`
+10. Membuat file baru bernama `create_product.html` pada direktori `main/templates`
+
+### Hasil screenshot Postman
+**HTML**
+<img src='/images/Tugas3_Postman_HTML.png'>
+
+**XML**
+<img src='/images/Tugas3_Postman_XML.png'>
+
+**JSON**
+<img src='/images/Tugas3_Postman_JSON.png'>
+
+**XML by ID**
+<img src='/images/Tugas3_Postman_XMLbyID.png'>
+
+**JSON by ID**
+<img src='/images/Tugas3_Postman_JSONbyID.png'>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+# Tugas 2
+
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
 1. Membuat repositori github bernama `booklyn`
 2. Membuat direktori utama bernama `booklyn` dan menginisiasikannya sebagai repositori git
@@ -22,7 +89,7 @@ Link Adaptable: https://booklyn.adaptable.app/main/
 19. Melakukan `add`, `commit`, dan `push` untuk memperbarui github
 
 ### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
-<img src='/Tugas2_No2_Bagan.jpg'>
+<img src='/images/Tugas2_No2_Bagan.jpg'>
 
 ### Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 Karena suatu project membutuhkan dependencies yang berbeda-beda dalam suatu OS sehingga memerlukan virtual environment untuk menjalankannya agar tidak perlu mengubah configurations pada OS. Dalam membuat aplikasi web berbasis Django, kita bisa melakukannya tanpa menggunakan virtual environment tetapi tidak disarankan karena akan lebih sulit untuk mengelola dependencies dan mengisolasi projectnya.
