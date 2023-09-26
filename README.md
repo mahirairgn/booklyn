@@ -1,5 +1,34 @@
 Link Adaptable: https://booklyn.adaptable.app/main/
 
+# Tugas 4
+### Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
+UserCreationForm adalah sebuah formulir bawaan yang disediakan oleh framework Django untuk memudahkan pembuatan formulir user baru dalam aplikasi web. Dengan adanya formulir ini, user dapat mendaftarkan dirinya di website tanpa harus menulis kode yang banyak dari awal. Namun, UserCreationForm juga memiliki keterbatasan dalam menyimpan input dari user (hanya nama, email, dan password) sehingga perlu dilakukan penambahan field lain secara terpisah jika membutuhkan kustomisasi.
+
+### Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+- Autentikasi adalah proses verifikasi identitas user dari data yang di-input, misalnya berdasarkan username / email dengan passwordnya.
+- Otorisasi adalah proses pengaturan akses dengan menentukan apa saja yang diizinkan dan tidak diizinkan oleh user dalam aplikasi.
+Kedua hal ini sangat penting untuk meningkatkan keamanan aplikasi. Autentikasi membantu mencegah user yang tidak sah dalam mengakses aplikasi, kemudian otorisasi membantu memastikan bahwa user hanya bisa mengakses fitur dan informasi yang diizinkan.
+
+### Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+Cookies adalah sebuah data kecil yang dikirim oleh server web ke browser web dan disimpan di perangkat user ketika terdapat interaksi dengan web. Cookies dapat digunakan untuk menyimpan informasi user seperti nama dan email. Selain itu, cookies juga berperan dalam pengelolaan data sesi user sehingga dapat mengenali user ketika masuk kembali ke web tersebut.
+Pengelolaan tersebut dilakukan oleh Django dengan cara membuat cookie berisi ID sesi yang unik ketika user masuk. Kemudian Django akan memeriksa ID sesi dari cookie untuk mengidentifikasi user. Lalu jika user keluar dari aplikasi, Django akan menghapus data sesi karena sesinya telah berakhir.
+
+### Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+Pada umumnya, cookies relatif aman untuk digunakan secara default. Namun, user harus tetap waspada karena cookies dapat digunakan untuk mengekstrak informasi sensitif user sehingga dapat menimbulkan risiko seperti Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), pelacakan dan pencurian data, hingga Cookie Sniffing.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. Menambahkan import pada file `views.py` di `main`. Import tersebut adalah `redirect`, `UserCreationForm`, `messages`. `authenticate`, `login`, `logout`, `login_required`, `datetime`
+2. Membuat fungsi baru bernama `register`, `login_user`, dan `logout_user` pada file tersebut, dengan isi kode sesuai pada github saya
+3. Menambahkan button logout pada file `main.html`
+4. Membuat berkas html baru bernama `register.html`, `login.html`. Lalu isi file tersebut dengan kode html sesuai kebutuhan
+5. Mengimpor fungsi-fungsi yang baru dibuat pada poin 2 ke file `urls.py` dan menambahkan path url nya ke dalam bagian `urlpatterns`
+6. Mengatur akses halaman main agar hanya bisa diakses oleh user yang sudah login dengan menambahkan kode di atas fungsi `show_main`
+7. Menambahkan informasi cookie `last_login` ke bagian `context` pada `views.py` dan pada `main.html`
+8. Mengimpor model pada `models.py` dan menambahkan kode untuk menghubungkan produk dengan seorang user
+9. Melakukan migrasi model
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
 # Tugas 3
 ### Apa perbedaan antara form POST dan form GET dalam Django?
 POST dan GET adalah metode pada HTTP yang berperan untuk mengirim data browser ke server. Perbedaan utama dari keduanya terletak pada cara mentransfer data dari user ke server.
