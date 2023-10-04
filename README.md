@@ -1,12 +1,45 @@
 Link Adaptable: https://booklyn.adaptable.app/main/
 
+# Tugas 5
+### Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya
+- `*` digunakan untuk memilih semua elemen pada halaman HTML. Biasanya digunakan kertika perlu melakukan sesuatu kepada seluruh elemen di web, misalnya saat mengatur default elemen
+- `element` digunakan untuk memilih semua elemen pada bagian yang disebutkan. Sebaiknya digunakan saat harus melakukan sesuatu pada bagian tertentu saja, misalnya `p` ketika akan memilih semua elemen paragraf (`<p>`). Dapat digunakan dengan combinator agar terhubung dengan `element` lain.
+-  `[attribute]` **dan sebagainya**, digunakan untuk memilih elemen pada attribute yang ditentukan. Selain itu, kita dapat menyespesifikkan elemen yang akan dipilih melalui perintah tambahan. Sebaiknya digunakan ketika kita perlu melakukan sesuatu pada suatu atribut yang spesifik. Misalnya `[title~="flower"]` hanya akan memilih elemen dengan atribut title yang memiliki kata "flower" di dalamnya
+
+### Jelaskan HTML5 Tag yang kamu ketahui
+1. `<a>` untuk membuat hyperlink ke web lain, dokumen, dan sumber lainnya
+2. `<body>` untuk mendefinisikan body dokumen, isinya adalah konten-konten yang akan ditampilkan 
+3. `<br>` untuk membuat break sebanyak 1 baris dalam teks
+4. `<button>` untuk membuat tombol yang bisa di-click oleh user
+5. `<embed>` untuk embed aplikasi lain (biasanya audio atau video) ke dokumen
+6. `<h1> to <h6>` untuk menunjukkan headings dalam web, dimana `<h1>` memiliki ukuran paling besar dan `<h6>` yang paling kecil
+7. `<img>` untuk menampilkan gambar
+8. `<p>` untuk menunjukkan paragraf
+9. `<table>` untuk membuat tabel
+
+### Jelaskan perbedaan antara margin dan padding
+- **Margin** adalah space di luar elemen dengan elemen lain di sekitarnya. Contoh penggunaannya adalah ketika ingin mengatur jarak dari elemen yang terpisah atau saat ingin membuat suatu elemen sejajar dengan elemen lainnya
+- **Padding** adalah space antara elemen dengan content di dalamnya. Contoh penggunaannya adalah ketika ingin menambahkan space kosong di sekitar konten.
+
+### Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+- **Tailwind** membuat tampilan menggabungkan kelas-kelas utilitas yang sebelumnya sudah didefinisikan sehingga ukuran file CSS nya lebih kecil daripada Bootstrap. Selain itu, tailwind juga lebih fleksibel dan mudah diadaptasikan terhadap proyek. Sebaiknya Tailwind digunakan pada proyek yang memerlukan fleksibilitas karena lebih mudah untuk dikustomisasi.
+- **Bootstrap** membuat tampilan dari gaya dan komponen yang sudah jadi dan memiliki tampilan sehingga bisa langsung digunakan. Hal ini membuat file CSS nya lebih besar. Tampilan pada bootstrap cenderung konsisten. Sebaiknya Bootstrap digunakan untuk proyek yang tidak membutuhkan banyak perubahan tampilan dan oleh pemula karena lebih mudah dipelajari.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
+1. Menambahkan Bootstrap CSS dan JS serta script JS pada file `base.html`
+2. Menmbuat fitur edit dan delete produk pada aplikasi dengan menambahkan fungsi baru pada `views.py` lalu diimport ke `urls.py` dan menambahkan path urlnya ke dalam `urlpatterns`
+3. Mengubah kode pada `main.html` untuk menampilkan fitur baru tersebut
+4. Menambahkan bagian `<style>` pada file-file di folder `templates` untuk mengatur tampilan dari masing-masing halaman menggunakan CSS
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
 # Tugas 4
 ### Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
 UserCreationForm adalah sebuah formulir bawaan yang disediakan oleh framework Django untuk memudahkan pembuatan formulir user baru dalam aplikasi web. Dengan adanya formulir ini, user dapat mendaftarkan dirinya di website tanpa harus menulis kode yang banyak dari awal. Namun, UserCreationForm juga memiliki keterbatasan dalam menyimpan input dari user (hanya nama, email, dan password) sehingga perlu dilakukan penambahan field lain secara terpisah jika membutuhkan kustomisasi.
 
 ### Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
-- Autentikasi adalah proses verifikasi identitas user dari data yang di-input, misalnya berdasarkan username / email dengan passwordnya.
-- Otorisasi adalah proses pengaturan akses dengan menentukan apa saja yang diizinkan dan tidak diizinkan oleh user dalam aplikasi.
+- **Autentikasi** adalah proses verifikasi identitas user dari data yang di-input, misalnya berdasarkan username / email dengan passwordnya.
+- **Otorisasi** adalah proses pengaturan akses dengan menentukan apa saja yang diizinkan dan tidak diizinkan oleh user dalam aplikasi.
 Kedua hal ini sangat penting untuk meningkatkan keamanan aplikasi. Autentikasi membantu mencegah user yang tidak sah dalam mengakses aplikasi, kemudian otorisasi membantu memastikan bahwa user hanya bisa mengakses fitur dan informasi yang diizinkan.
 
 ### Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?

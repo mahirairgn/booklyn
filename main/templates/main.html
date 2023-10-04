@@ -1,51 +1,160 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Hi! Welcome to Booklyn</h1>
+    <div class="content-container">
+        <h1>Welcome to Booklyn, {{ name }}!</h1>
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
+        <div class="user-info">
+            <h5>Name</h5>
+            <p>{{ name }}</p>
 
-    <h5>Class:</h5>
-    <p>{{class}}</p>
+            <h5>Class</h5>
+            <p>{{ class }}</p>
 
-    <h5>Total Books: </h5>
-    <p>{{ amount_books }}</p>
+            <h5>Total Books</h5>
+            <p>{{ amount_books }}</p>
+        </div>
 
+        <div class="table-container">
+            {% for item in items %}
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Price: {{ item.amount }}</p>
+                        <p class="card-text">Author: {{ item.description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'main:edit_item' item.pk %}">
+                            <button class="action-button">Edit</button>
+                        </a>
+                        <a href="{% url 'main:delete_item' item.pk %}">
+                            <button class="action-button">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="bottom-buttons">
+            <a href="{% url 'main:create_item' %}">
+                <button class="add-item-button">Add New Item</button>
+            </a>
+
+            <a href="{% url 'main:logout' %}">
+                <button class="logout-button">Logout</button>
+            </a>
+        </div>
+
+        <h6>Sesi terakhir login: {{ last_login }}</h6>
+
+    </div>
+
+    <style>
+        .content-container {
+            background-color: #f2f2f2;
+            font-family: 'Nunito', sans-serif;
+            padding: 15px;
+            padding-left: 20px;
+        }
     
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-        </tr>
+        h1 {
+            margin-top: 5px;
+            color: #333;
+            font-weight: bold;
+        }
 
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+        h5 {
+            margin-top: 5px;
+            font-weight: bold;
+        }
 
-        {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.date_added}}</td>
-            </tr>
-        {% endfor %}
-    </table>
+        .table-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-height: 180px; /* Adjust the height as needed */
+            overflow: auto;
+        }
 
-    <br />
+        .card {
+            width: calc(33.33% - 15px); /* Three cards in a row with spacing */
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    <a href="{% url 'main:create_item' %}">
-        <button>
-            Add New Item
-        </button>
-    </a>
+        .card-header {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
 
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
+        .card-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
+        .card-body {
+            padding: 10px;
+        }
 
+        .card-text {
+            margin: 0;
+        }
+
+        .card-footer {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .action-button {
+            background-color: #e7e7e7;
+            color: black;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .action-button:hover {
+            background-color: #b8b7b7;
+        }
+
+        .add-item-button {
+            background-color: #21b262;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-button {
+            background-color: #ff3700;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .bottom-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .bottom-buttons a {
+            margin: 0 10px;
+        }
+
+        h6 {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 {% endblock content %}
