@@ -7,7 +7,7 @@ Link Adaptable: https://booklyn.adaptable.app/main/
 - Asynchronous Programming umumnya lebih cepat karena bisa menjalankan beberapa tugas sekaligus. Sedangkan, Synchronous Programming cenderung lebih lambat.
 
 ### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
-Paradigma event-driven programming adalah sebuah 
+Paradigma event-driven programming adalah sebuah model pemrograman yang memungkinkan program dapat merespons suatu peristiwa, misalnya tindakan dari user atau perubahan status dalam sistem. Dengan adanya event-driven, program tidak akan menjalankan kode secara berurutan, melainkan akan menunggu suatu peristiwa terjadi. Pada tugas 6 ini, paradigma event-driven programming diterapkan pada button edit dan delete.
 
 ### Jelaskan penerapan asynchronous programming pada AJAX
 Dengan menerapkan asynchoronous programming, AJAX dapat mengambil dan mengirim data dari/ke server web tanpa harus melakukan *refresh* pada halaman web tersebut sehingga aplikasi web tetap responsif saat melakukan *request* ke server. Contoh penerapan:
@@ -16,9 +16,20 @@ Dengan menerapkan asynchoronous programming, AJAX dapat mengambil dan mengirim d
 3. Fitur chat di suatu web tidak akan tertutup ketika kita membuka halaman lain dalam web tersebut
 
 ### Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
-
+- Fetch API adalah fitur JavaScript bawaan, sedangkan jQuery adalah library JavaScript pihak ketiga.
+- Fetch API cenderung lebih mudah digunakan daripada jQuery.
+- Fetch API menyediakan fitur yang lebih lengkap daripada jQuery, misalnya dukungan untuk permintaan POST dan PUT.
+- Komunitas yang dimiliki jQuery lebih besar dan lebih aktif daripada Fetch API.
+Dari beberapa perbedaan di atas, saya cenderung memilih Fetch API dalam menerapkan AJAX. 
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. Membuat fungsi baru bernama `get_item_json` dan `add_item_ajax` pada `views.py`
+2. Impor `from django.views.decorators.csrf import csrf_exempt` dan menambahkan dekorator `@csrf_exempt` di atas fungsi `add_item_ajax`
+3. Menambahkan routing untuk kedua fungsi tersebut pada `urls.py`
+4. Menambahkan data item dengan Fetch API dengan membuat block `<script>` dan menambahkan beberapa fungsi baru
+5. Membuat modal sebagai form untuk menambahkan item
+6. Menambahkan fungsi `addItems()` dan `onclick`di dalam block `<script>`
+7. Melakukan deployment ke PaaS PBP Fasilkom UI 
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
