@@ -1,5 +1,27 @@
 Link Adaptable: https://booklyn.adaptable.app/main/
 
+# Tugas 6
+### Jelaskan perbedaan antara asynchronous programming dengan synchronous programming
+- Asynchronous Programming bersifat *multi-thread* sehingga dapat mengeksekusi tugas secara paralel atau bersamaan. Sedangkan, Synchronous Programming bersifat *single-thread* sehingga hanya bisa mengeksekusi satu tugas dalam satu waktu.
+- Asynchronous Programming bersifat *non-blocking* sehingga dapat melanjutkan eksekusi tugas lain tanpa harus menunggu suatu tugas selesai dieksekusi. Sedangkan, Synchronous Programming bersifat *blocking* sehingga eksekusi suatu tugas bergantung pada penyelesaian tugas sebelumnya. Jika belum selesai, maka suatu tugas tidak bisa dieksekusi.
+- Asynchronous Programming umumnya lebih cepat karena bisa menjalankan beberapa tugas sekaligus. Sedangkan, Synchronous Programming cenderung lebih lambat.
+
+### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+Paradigma event-driven programming adalah sebuah 
+
+### Jelaskan penerapan asynchronous programming pada AJAX
+Dengan menerapkan asynchoronous programming, AJAX dapat mengambil dan mengirim data dari/ke server web tanpa harus melakukan *refresh* pada halaman web tersebut sehingga aplikasi web tetap responsif saat melakukan *request* ke server. Contoh penerapan:
+1. Aplikasi web pencarian yang menampilkan hasil pencarian secara *real-time* saat user sedang mengetik
+2. Dalam sistem voting atau rating, halaman web akan memperbarui hasil perhitungannya tanpa mengubah tampilan atau *reload halaman*
+3. Fitur chat di suatu web tidak akan tertutup ketika kita membuka halaman lain dalam web tersebut
+
+### Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
 # Tugas 5
 ### Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya
 - `*` digunakan untuk memilih semua elemen pada halaman HTML. Biasanya digunakan kertika perlu melakukan sesuatu kepada seluruh elemen di web, misalnya saat mengatur default elemen

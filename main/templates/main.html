@@ -12,42 +12,132 @@
             <p>{{ class }}</p>
 
             <h5>Total Books</h5>
-            <p>{{ amount_books }}</p>
+            <p>{{ amount_books}}</p>
         </div>
 
-        <div class="table-container">
-            {% for item in items %}
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">{{ item.name }}</h5>
+        <div class="d-flex flex-wrap" id="item-container"></div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">Price: {{ item.amount }}</p>
-                        <p class="card-text">Author: {{ item.description }}</p>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="col-form-label">Price:</label>
+                                <input type="number" class="form-control" id="price" name="price"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                        </form>
                     </div>
-                    <div class="card-footer">
-                        <a href="{% url 'main:edit_item' item.pk %}">
-                            <button class="action-button">Edit</button>
-                        </a>
-                        <a href="{% url 'main:delete_item' item.pk %}">
-                            <button class="action-button">Delete</button>
-                        </a>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
 
         <div class="bottom-buttons">
-            <a href="{% url 'main:create_item' %}">
-                <button class="add-item-button">Add New Item</button>
-            </a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
 
             <a href="{% url 'main:logout' %}">
                 <button class="logout-button">Logout</button>
             </a>
         </div>
 
-        <h6>Sesi terakhir login: {{ last_login }}</h6>
+        <div class="bottom-content">
+            <h6>Sesi terakhir login: {{ last_login }}</h6>
+        </div>
+
+        <script>
+            async function getItems() {
+                return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+            }
+
+            async function refreshItems() {
+                document.getElementById("item-container").innerHTML = ""
+                const items = await getItems()
+
+                items.forEach((item) => {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+
+                    const cardHeader = document.createElement("div");
+                    cardHeader.classList.add("card-header");
+
+                    const name = document.createElement("h5");
+                    name.classList.add("card-title");
+                    name.textContent = item.fields.name;
+
+                    const cardBody = document.createElement("div");
+                    cardBody.classList.add("card-body");
+
+                    const price = document.createElement("p");
+                    price.classList.add("card-text");
+                    price.textContent = `Price: ${item.fields.amount}`;
+
+                    const author = document.createElement("p");
+                    author.classList.add("card-text");
+                    author.textContent = `Author: ${item.fields.description}`;
+
+                    const cardFooter = document.createElement("div");
+                    cardFooter.classList.add("card-footer");
+
+                    const editButton = document.createElement("button");
+                    editButton.classList.add("action-button");
+                    editButton.textContent = "Edit";
+                    editButton.addEventListener("click", () => {
+                        window.location.href = `edit_item/${item.pk}`;
+                    });
+
+                    const deleteButton = document.createElement("button");
+                    deleteButton.classList.add("action-button");
+                    deleteButton.textContent = "Delete";
+                    deleteButton.addEventListener("click", () => {
+                        window.location.href = `delete_item/${item.pk}`;
+                    });
+
+                    cardHeader.appendChild(name);
+                    cardBody.appendChild(price);
+                    cardBody.appendChild(author);
+                    cardFooter.appendChild(editButton);
+                    cardFooter.appendChild(deleteButton);
+
+                    card.appendChild(cardHeader);
+                    card.appendChild(cardBody);
+                    card.appendChild(cardFooter);
+
+                    document.getElementById("item-container").appendChild(card);
+                    });   
+
+                document.getElementById("item-container").innerHTML = htmlString
+            }
+
+            refreshItems()
+
+            function addItem() {
+                fetch("{% url 'main:add_item_ajax' %}", {
+                    method: "POST",
+                    body: new FormData(document.querySelector('#form'))
+                }).then(refreshItems)
+                document.getElementById("form").reset()
+                return false
+            }
+
+            document.getElementById("button_add").onclick = addItem
+        </script>
 
     </div>
 
@@ -57,6 +147,9 @@
             font-family: 'Nunito', sans-serif;
             padding: 15px;
             padding-left: 20px;
+            min-height: 100vh; /* Make it take up at least the full viewport height */
+            display: flex;
+            flex-direction: column; /* Allow the content to grow downward */
         }
     
         h1 {
@@ -70,16 +163,15 @@
             font-weight: bold;
         }
 
-        .table-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            max-height: 180px; /* Adjust the height as needed */
-            overflow: auto;
+        #item-container {
+            max-height: 180px; /* Set a maximum height for the container */
+            flex-wrap: wrap; /* Allow items to wrap to the next row when the container is full */
+            overflow-y: auto; /* Enable vertical scrolling if items exceed the container's height */
         }
 
         .card {
             width: calc(33.33% - 15px); /* Three cards in a row with spacing */
+            margin: 0 10px 10px 0;
             background-color: white;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -125,7 +217,7 @@
             background-color: #b8b7b7;
         }
 
-        .add-item-button {
+        .btn-primary {
             background-color: #21b262;
             color: white;
             padding: 5px 10px;
@@ -154,7 +246,11 @@
 
         h6 {
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: auto;
+        }
+
+        .bottom-content {
+            margin-top: auto;
         }
     </style>
 {% endblock content %}
